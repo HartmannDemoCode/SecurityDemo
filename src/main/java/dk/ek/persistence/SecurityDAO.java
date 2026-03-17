@@ -1,6 +1,7 @@
 package dk.ek.persistence;
 
-import io.javalin.validation.ValidationException;
+
+import dk.ek.exceptions.ValidationException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -12,7 +13,14 @@ public class SecurityDAO implements ISecurityDAO {
 
     @Override
     public User getVerifiedUser(String username, String password) throws ValidationException {
-        return null;
+        try(EntityManager em = emf.createEntityManager()){
+            User user = em.find(User.class, username);
+            if(user.verifyPassword(password)){
+                return user;
+            } else {
+                throw new ValidationException("User could not be validated");
+            }
+        }
     }
 
     @Override
@@ -45,6 +53,12 @@ public class SecurityDAO implements ISecurityDAO {
 
     public static void main(String[] args) {
         ISecurityDAO dao = new SecurityDAO(HibernateConfig.getEntityManagerFactory());
-        User user = dao.createUser("newUser3", "newPassword");
+//        User user = dao.createUser("newUser3", "newPassword");
+        try {
+            User foundUser = dao.getVerifiedUser("newUser3", "newPassword");
+            System.out.println(foundUser);
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

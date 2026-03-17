@@ -1,6 +1,7 @@
 package dk.ek.persistence;
 
-import io.javalin.validation.ValidationException;
+
+import dk.ek.exceptions.ValidationException;
 
 public interface ISecurityDAO {
     User getVerifiedUser(String username, String password) throws ValidationException; // used for login

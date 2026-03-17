@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -19,7 +20,7 @@ public class User implements ISecurityUser{
     private String userName;
     private String password;
     @ManyToMany
-    Set<Role> roles;
+    Set<Role> roles = new HashSet<>();
     public User(String username, String password ){
         String salt = BCrypt.gensalt(12);
         String hashedPassword = BCrypt.hashpw(password, salt);
@@ -40,7 +41,7 @@ public class User implements ISecurityUser{
 
     @Override
     public void addRole(Role role) {
-
+        this.roles.add(role);
     }
 
     @Override
