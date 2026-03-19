@@ -8,6 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class User implements ISecurityUser{
     @Column(name = "user_name", nullable = false)
     private String userName;
     private String password;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     Set<Role> roles = new HashSet<>();
     public User(String username, String password ){
         String salt = BCrypt.gensalt(12);
@@ -31,7 +32,7 @@ public class User implements ISecurityUser{
 
     @Override
     public Set<String> getRolesAsStrings() {
-        return Set.of();
+        return this.roles.stream().map((role)->role.getRoleName()).collect(Collectors.toSet());
     }
 
     @Override

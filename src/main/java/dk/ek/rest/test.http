@@ -8,3 +8,11 @@ POST http://localhost:7070/api/auth/register
 "username": "fromRest2",
 "password": "pass123"
 }
+
+###
+POST http://localhost:7070/api/auth/login
+
+{
+"username": "fromRest2",
+"password": "pass123"
+}

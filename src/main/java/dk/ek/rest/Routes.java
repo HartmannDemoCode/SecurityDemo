@@ -36,7 +36,7 @@ public class Routes {
 //
             case "auth" -> () -> path("auth", () -> {
                 post("register", securityController::register );
-                post("login", (ctx)->{} );
+                post("login", securityController::login);
             });
             default -> throw new IllegalArgumentException("Unknown resource name: " + resourceName);
         };
