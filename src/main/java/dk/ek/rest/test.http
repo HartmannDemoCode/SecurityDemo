@@ -5,7 +5,7 @@ GET http://localhost:7070/api/msg/hello
 POST http://localhost:7070/api/auth/register
 
 {
-"username": "fromRest2",
+"username": "user1",
 "password": "pass123"
 }
 
@@ -13,10 +13,10 @@ POST http://localhost:7070/api/auth/register
 POST http://localhost:7070/api/auth/login
 
 {
-"username": "fromRest2",
+"username": "user1",
 "password": "pass123"
 }
 
 ###
-GET http://localhost:7070/api/auth/protected
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlRob21hcyBIYXJ0bWFublwiIiwic3ViIjoiZnJvbVJlc3QyIiwiZXhwIjoxNzczOTIwNDA5LCJyb2xlcyI6InVzZXIiLCJ1c2VybmFtZSI6ImZyb21SZXN0MiJ9.rtNEsnHADQnDBhD6pRvnC0gUtMqeZqfa3ukqoZ0GJPQ
+GET http://localhost:7070/api/auth/userprotected
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlRob21hcyBIYXJ0bWFublwiIiwic3ViIjoiZnJvbVJlc3QzIiwiZXhwIjoxNzc4MDk3NjgxLCJyb2xlcyI6InVzZXIiLCJ1c2VybmFtZSI6ImZyb21SZXN0MyJ9.8d4zD9lFgSmgRGVHJ3-LtSl_HVXijH1Ji9_WkO-h7LY

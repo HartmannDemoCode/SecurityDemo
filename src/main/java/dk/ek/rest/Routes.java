@@ -37,10 +37,14 @@ public class Routes {
 //
             case "auth" -> () -> path("auth", () -> {
                 ObjectNode on = objectMapper.createObjectNode();
-                on.put("msg", "Hello World from protected user route");
                 post("register", securityController::register );
                 post("login", securityController::login);
-                get("protected", ctx->ctx.json(on).status(200), Role.USER, Role.ADMIN);
+                get("userprotected", ctx->{
+                    on.put("msg", "Hello World from protected user route");
+                    ctx.json(on).status(200);}, Role.USER);
+                get("adminprotected", ctx->{
+                    on.put("msg", "Hello World from protected admin route");
+                    ctx.json(on).status(200);}, Role.ADMIN);
             });
             default -> throw new IllegalArgumentException("Unknown resource name: " + resourceName);
         };

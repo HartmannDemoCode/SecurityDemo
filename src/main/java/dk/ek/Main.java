@@ -11,9 +11,6 @@ public class Main {
         Routes routes = new Routes();
         new ApplicationConfig()
                 .security()
-//                .route(securityRoutes.getRouteResource("auth"))
-//                .route(securityRoutes.getRouteResource("protected"))
-//                .route(restRoutes.getRouteResource("open/person"))
                 .route(routes.getRouteResource("msg"))
                 .route(routes.getRouteResource("auth"))
 //                .route(() -> {
