@@ -39,6 +39,7 @@ public class Routes {
                 ObjectNode on = objectMapper.createObjectNode();
                 post("register", securityController::register );
                 post("login", securityController::login);
+                get("healthcheck", (ctx)->ctx.status(200));
                 get("userprotected", ctx->{
                     on.put("msg", "Hello World from protected user route");
                     ctx.json(on).status(200);}, Role.USER);
